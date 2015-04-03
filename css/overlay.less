@@ -1,0 +1,371 @@
+@bootstrap-path: "/libs/bootstrap/less/";
+
+@import "@{bootstrap-path}variables.less";
+
+@import "@{bootstrap-path}mixins/size.less";
+@import "@{bootstrap-path}mixins/text-overflow.less";
+@import "@{bootstrap-path}mixins/vendor-prefixes.less";
+
+@icon-font-path: "/libs/bootstrap/fonts/";
+@import "@{bootstrap-path}glyphicons.less";
+
+// Webfonts
+@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,500,400italic,500italic);
+
+@body-bg: black;
+@text-color: white;
+@font-size-base: 22px;
+
+body {
+	font-family: 'Fira Sans', sans-serif;
+	font-size: @font-size-base;
+	line-height: @line-height-base;
+	color: @text-color;
+	background-color: @body-bg;
+}
+
+// MIXINS
+
+.overflow-ellipsis() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// MAIN
+
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+
+html, body {
+	//background: transparent;
+	background: black url('../img/test-background.jpg') no-repeat top center;
+}
+
+// VARIABLES
+
+@default-bg-color: rgb(15, 69, 108);
+@default-bg-opacity: 70%;
+@default-bg: fade(@default-bg-color, @default-bg-opacity);
+@default-gradient-light: linear-gradient(to bottom, #3b7aa6 0%,#033865 100%);
+@default-gradient-light-inverted: linear-gradient(to bottom, #002343 0%,#073f61 100%);
+@default-gradient-light-inverted-transp: linear-gradient(to bottom, rgba(0,35,67,0.75) 0%,rgba(7,63,97,0.75) 100%);
+@default-gradient-dark: linear-gradient(to bottom, rgba(1,52,90,1) 0%,rgba(0,0,11,1) 100%);
+
+// GAP
+
+.gap {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	right: 30px;
+	height: 110px;
+	background: @default-gradient-light-inverted-transp;
+	border-radius: 10px;
+	border-bottom-left-radius: 0;
+	overflow: hidden;
+	font-size: @font-size-base;
+
+	.gap-title {
+		position: absolute;
+		top: 0;
+		left: -15px;
+		width: 150px;
+		height: 110px;
+		padding-left: 10px;
+		z-index: 10;
+		text-transform: uppercase;
+		text-align: center;
+		font-size: @font-size-base + 10;
+		font-weight: 500;
+		line-height: 105px;
+		background: @default-gradient-light;
+		transform: skewX(-15deg);
+	}
+
+	.gap-item-wrapper {
+		white-space: nowrap;
+		position: absolute;
+
+		.gap-item {
+			width: 600px;
+			height: 110px;
+			vertical-align: top;
+			position: relative;
+			white-space: normal;
+			display: inline-block;
+
+			> * {
+				display: inline-block;
+			}
+
+			&:last-child .divider {
+				display: none;
+			}
+
+			.position, .team-name, .gap-time {
+				font-weight: 500;
+				text-transform: uppercase;
+			}
+
+			.position {
+				width: 60px;
+				height: 45px;
+				background: @default-gradient-dark;
+				font-size: @font-size-base + 6;
+				text-align: center;
+				line-height: 45px;
+				border-radius: 10px;
+				transform: skewX(-15deg);
+				margin-top: 10px;
+			}
+
+			.team-name {
+				margin-left: 15px;
+				width: 350px;
+				vertical-align: middle;
+				.overflow-ellipsis()
+			}
+
+			.gap-time, .int-time {
+				text-align: right;
+				width: 125px;
+				position: absolute;
+				top: 19px;
+				right: 40px;
+			}
+
+			.int-time {
+				top: 58px;
+			}
+
+			.car-number {
+				height: 35px;
+				margin-left: 80px;
+				line-height: 38px;
+				vertical-align: middle;
+
+				.car-class {
+					width: 10px;
+					height: 100%;
+					float: right;
+					margin-left: 5px;
+					transform: skewX(-15deg);
+				}
+			}
+
+			.driver-name {
+				height: 35px;
+				margin-left: 10px;
+				line-height: 38px;
+				text-transform: uppercase;
+				max-width: 310px;
+				vertical-align: middle;
+				.overflow-ellipsis()
+			}
+
+			.other {
+				position: absolute;
+				top: 60px;
+				left: 0;
+
+				.pit {
+					display: inline-block;
+					background: rgb(255, 255, 45);
+					color: black;
+					font-size: @font-size-base - 4;
+					width: 20px;
+					height: 20px;
+					border-radius: 10px;
+					text-align: center;
+
+					&.stall {
+						background: rgb(253, 52, 52);
+						color: white;
+					}
+				}
+
+				.offtrack {
+					font-size: 20px;
+					color: rgb(253, 255, 45);
+					top: 4px;
+				}
+			}
+
+			.divider {
+				position: absolute;
+				top: 5%;
+				bottom: 5%;
+				right: 20px;
+				width: 5px;
+				background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.75) 50%,rgba(255,255,255,0) 100%);
+			}
+		}
+	}
+
+}
+
+.session-info {
+	width: 220px;
+	height: 60px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: absolute;
+	top: 140px;
+	left: 30px;
+	background: @default-gradient-light-inverted;
+	overflow: hidden;
+
+	.info-wrapper {
+		width: 210px;
+		height: 100%;
+		display: inline-block;
+		margin-left: -10px;
+		background: @default-gradient-light;
+		transform: skewX(-15deg);
+		text-align: center;
+		font-weight: 500;
+		line-height: 26px;
+		overflow: hidden;
+
+		> * {
+			transform: skewX(15deg);
+			height: 100%;
+			width: 102%;
+			line-height: 60px;
+			font-size: @font-size-base + 10;
+		}
+
+		.checkered-flag {
+			background: url('../img/checkered-flag.png');
+			background-size: 64px;
+			text-shadow: 0 0 10px rgb(0, 0, 0);
+		}
+	}
+}
+
+.driver-info {
+	position: absolute;
+	left: 300px;
+	right: 300px;
+	bottom: 30px;
+	height: 120px;
+	font-size: @font-size-base + 4;
+	text-transform: uppercase;
+
+	.driver-info-top, .driver-info-bottom {
+		border-radius: 10px;
+		height: 60px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.driver-info-top {
+		background: @default-gradient-light-inverted;
+
+		.car-number {
+			position: absolute;
+			height: 40px;
+			top: 10px;
+			left: 30px;
+			line-height: 35px;
+			background: @default-gradient-dark;
+			transform: skewX(-15deg);
+			padding: 5px 10px 5px 15px;
+			border-radius: 6px;
+
+			.car-class {
+				width: 10px;
+				height: 100%;
+				float: right;
+				margin-left: 15px;
+				border-radius: 3px;
+			}
+		}
+
+		.team-name {
+			.overflow-ellipsis();
+			position: absolute;
+			left: 150px;
+			height: 100%;
+			max-width: 650px;
+			font-weight: 500;
+			line-height: 63px;
+		}
+
+		.position {
+			position: absolute;
+			right: -5px;
+			height: 100%;
+			line-height: 63px;
+			background: @default-gradient-light;
+			transform: skewX(-15deg);
+			padding-left: 30px;
+
+			.text-overall, .text-class {
+				display: inline-block;
+				.text {
+					display: inline-block;
+					transform: skewX(15deg);
+				}
+			}
+
+			.overall, .class {
+				display: inline-block;
+				height: 100%;
+				transform: skewX(30deg);
+				position: relative;
+				right: -5px;
+				padding: 0 40px 0 30px;
+				margin-left: 20px;
+
+				.text {
+					display: inline-block;
+					transform: skewX(-30deg);
+					font-size: 1.2em;
+					font-weight: 500;					
+				}
+			}
+
+			.overall {
+				background: @default-gradient-dark;
+			}
+
+			&.multi {
+				.overall {
+					border-radius: 6px;
+					padding: 0 30px;
+					margin: 0 20px;
+					transform: skewX(15deg);
+
+					.text {
+						transform: skewX(-15deg);						
+					}
+				}
+
+				.text-class {
+					margin-left: 10px;
+				}
+			}
+		}
+	}
+
+	.driver-info-bottom {
+		background: @default-gradient-light;
+
+		.driver-name {
+			position: absolute;
+			height: 100%;
+			left: 150px;
+			line-height: 63px;
+		}
+
+		.car-name {
+			position: absolute;
+			height: 100%;
+			right: 50px;
+			line-height: 63px;
+		}
+	}
+}
