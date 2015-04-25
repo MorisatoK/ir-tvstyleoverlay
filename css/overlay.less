@@ -1,0 +1,123 @@
+@bootstrap-path: "/libs/bootstrap/less/";
+
+@import "@{bootstrap-path}variables.less";
+
+@import "@{bootstrap-path}mixins/size.less";
+@import "@{bootstrap-path}mixins/text-overflow.less";
+@import "@{bootstrap-path}mixins/vendor-prefixes.less";
+
+@icon-font-path: "/libs/bootstrap/fonts/";
+@import "@{bootstrap-path}glyphicons.less";
+
+// Webfonts
+@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,500,400italic,500italic);
+
+@text-color: white;
+@font-size-base: 22px;
+
+body {
+	font-family: 'Fira Sans', sans-serif;
+	font-size: @font-size-base;
+	line-height: @line-height-base;
+	color: @text-color;
+}
+
+html, body {
+	background: black;
+}
+
+// MIXINS
+
+.overflow-ellipsis() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// MAIN
+
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+
+// VARIABLES
+
+@default-bg-color: #133144;
+@default-gradient-light: linear-gradient(to bottom, #162837 0%,#17394b 100%);
+@default-gradient-light-inverted: linear-gradient(to bottom, #123142 0%,#15243b 100%);
+@default-gradient-dark: linear-gradient(to bottom, #1d3440 0%,#0e1d27 100%);
+@default-gradient-dark-inverted: linear-gradient(to bottom, #111f2f 0%,#11202c 100%);
+
+// GLOBAL
+.irtvso {
+	position: absolute;
+
+	&.top-aligned {
+		top: 55px;
+	}
+
+	&.bottom-aligned {
+		bottom: 0;
+	}
+}
+
+// SESSION INFO
+
+#session-info {
+	width: 210px;
+	left: 50%;
+	margin-left: -105px;
+	font-size: 1.2em;
+	line-height: 1.6em;
+
+	.remaining, .session-flag {
+		position: relative;
+		height: 40px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.remaining {
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		background: @default-gradient-dark;
+		overflow: hidden;
+		padding-right: 20px;
+
+		.corner {
+			width: 30px;
+			height: 40px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: @default-gradient-dark-inverted;
+			-webkit-mask-image: url(../img/session-info-mask.svg);
+		}
+	}
+
+	.session-flag {
+		border-radius: 10px;
+		border-top-left-radius: 0;
+		color: black;
+		font-weight: 500;
+		display: none;
+
+		&.yellow-flag, &.green-flag, &.white-flag, &.checkered-flag {
+			display: block;
+		}
+
+		&.yellow-flag {
+			background: linear-gradient(to bottom, darken(#ccca31, 15%) 0%,#ccca31 100%);
+		}
+
+		&.green-flag {
+			background: linear-gradient(to bottom, darken(#299a0b, 15%) 0%,#299a0b 100%);
+		}
+
+		&.checkered-flag {
+			background: url(../img/checkered-flag.jpg) top left no-repeat;
+			background-size: 300px;
+		}
+	}
+
+}
