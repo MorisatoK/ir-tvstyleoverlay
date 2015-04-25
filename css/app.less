@@ -1,0 +1,55 @@
+@bootstrap-path: "/libs/bootstrap/less/";
+@import "@{bootstrap-path}variables.less";
+@icon-font-path: "/libs/bootstrap/fonts/";
+@import "@{bootstrap-path}glyphicons.less";
+@import "@{bootstrap-path}mixins/size.less";
+@import "@{bootstrap-path}mixins/vendor-prefixes.less";
+
+body {
+	padding-top: 70px;
+	@media (max-width: @grid-float-breakpoint-max) {
+		padding-top: 165px;
+	}
+}
+
+@media (min-width: @screen-sm) {
+	.container {
+		max-width: @screen-sm;
+	}
+}
+
+input,
+button {
+	outline: none !important;
+}
+
+// MARKDOWN
+
+@import (inline) "/libs/highlight/styles/monokai_sublime.css";
+
+xmp {
+	display: none;
+}
+
+pre.hljs {
+	border: none;
+}
+
+img.position {
+	float: left;
+	padding: 0 10px 10px 0;
+}
+
+// SETTINGS
+
+.form-control[readonly] {
+	cursor: text;
+}
+
+.settings {
+
+	.input-url {
+		padding-bottom: 1em;
+	}
+
+}

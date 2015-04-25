@@ -1,0 +1,59 @@
+<div class="row">
+
+	<div class="col-md-12">
+
+		<xmp app-markdown>
+		## About
+
+		Various modular TV style overlays heavily inspired by 2015 season FIA WEC for iRacing Browser Apps.
+
+		Main purpose is to recreate a TV like experience for watched sessions or replays in iRacing. You add the modules to different scenes in OBS (or your other favorite capture software) and switch between scenes as you see fit.
+
+		## Setup
+		1. Go to [Settings](#/settings) page if you need to configure the host of the iRacing Browser Apps server and/or FPS.
+		2. Copy the generated **CLR Browser URL** of the desired module from here or from [Settings](#/settings) page.
+		3. In OBS add a new **CLR Browser** layer in your scene and paste the **URL**
+		4. Set **Dimensions** to `Width: 1920` and `Height: 1080`
+
+		Repeat these steps for other modules or add other scenes with different combinations of modules. Be creative!
+
+		## Session Info
+		<img class="position" alt="Session Info Position" title="Top center aligned" src="img/layout/session-info.png" />
+		Displays remaining session time or laps.
+		</xmp>
+
+		<div class="clearfix"></div>
+		<div class="input-group input-url">
+			<span class="input-group-addon">CLR Browser URL</span>
+			<input ng-model="sessionInfoUrl" type="url" class="form-control" readonly>
+		</div>
+
+		<xmp app-markdown>
+		## Gap Ticker
+		<img class="position" alt="Gap Ticker Position" title="Bottom aligned" src="img/layout/gap-ticker.png" />
+		Displays current standings and driver/team info in a ticker at the bottom of the screen.
+
+		**Note:** It is recommended to set UI scaling in iRacing to the lowest possible value for the ticker to cover the iRacing watermark completely.
+		</xmp>
+
+		<div class="clearfix"></div>
+		<div class="input-group input-url">
+			<span class="input-group-addon">CLR Browser URL</span>
+			<input ng-model="gapTickerUrl" type="url" class="form-control" readonly>
+		</div>
+
+		<xmp app-markdown>
+		## Driver Info
+		<img class="position" alt="Driver Info Position" title="Bottom aligned, above ticker" src="img/layout/driver-info.png" />
+		Displays driver/team info and overall/class position of the car in focus.
+		</xmp>
+
+		<div class="clearfix"></div>
+		<div class="input-group input-url">
+			<span class="input-group-addon">CLR Browser URL</span>
+			<input ng-model="driverInfoUrl" type="url" class="form-control" readonly>
+		</div>
+
+	</div>
+
+</div>
