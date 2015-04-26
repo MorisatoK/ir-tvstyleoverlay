@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Wolfgang Höhn" />
+		<title>TV Style Overlay &middot; Gap Ticker &middot; iRacing Browser Apps</title>
+		<!-- less -->
+		<link rel="stylesheet/less" type="text/css" href="../css/overlay.less" />
+		<script src="/libs/less.min.js"></script>
+		<!-- velocity -->
+		<script src="../libs/velocity.min.js"></script>
+		<!-- angular -->
+		<script src="/libs/angular/angular.min.js"></script>
+		<script src="/libs/angular/angular-animate.min.js"></script>
+		<script src="/libs/angular/angular-route.min.js"></script>
+		<script src="/libs/angular/angular-sanitize.min.js"></script>
+		<!-- coffee -->
+		<script src="/libs/coffee-script.js"></script>
+		<script src="/libs/ir.coffee" type="text/coffeescript"></script>
+		<script src="../js/utils.coffee" type="text/coffeescript"></script>
+		<script src="overlay.coffee" type="text/coffeescript"></script>
+	</head>
+	<body ng-cloak>
+		<div id="gap-ticker" ng-controller="GapTickerCtrl" class="irtvso bottom-aligned">
+			<div class="title">Gap</div>
+			<div app-gap-ticker-wrapper class="item-wrapper">
+				<div ng-repeat="i in standings track by i.CarIdx" app-gap-item="i.CarIdx" class="gap-item">
+					<div class="number-wrapper">
+						<!-- position -->
+						<div app-overall-position="i.CarIdx" class="position"></div>
+						<!-- car number -->
+						<div app-car-number="i.CarIdx" class="car-number"></div>
+					</div>
+					<!-- driver/teamname -->
+					<div class="name" ng-bind="ir.WeekendInfo.TeamRacing ? ir.DriversByCarIdx[i.CarIdx].TeamName : ir.DriversByCarIdx[i.CarIdx].UserName"></div>
+					<!-- gap -->
+					<div app-gap-time="i.CarIdx" class="gap-time"></div>
+					<div class="divider"></div>
+					<div class="clearfix"></div>
+					<!-- driver/carname -->
+					<div class="name" ng-bind="ir.WeekendInfo.TeamRacing ? ir.DriversByCarIdx[i.CarIdx].UserName : ir.CarIDs.length > 1 ? ir.DriversByCarIdx[i.CarIdx].CarScreenName : ''"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
