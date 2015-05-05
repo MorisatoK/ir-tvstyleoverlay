@@ -261,7 +261,7 @@ app.directive 'appGapTime', (iRData) ->
             element.toggleClass 'ng-hide', isRace and firstPosition.LapsComplete == 0
 
             if firstPosition.CarIdx == carIdx
-                element.text if isRace then position.LapsComplete + ' Laps' else ''
+                element.text if isRace then position.LapsComplete + getLapString(position.LapsComplete) else ''
                 return
 
             if isRace
@@ -277,11 +277,11 @@ app.directive 'appGapTime', (iRData) ->
                         element.text '+' + utils.timeFormat gap, 1
                     else if ir.SessionState < 5 and diffLaps > 0 and firstPosition.LastTime != -1 and \
                             Math.ceil(gap / firstPosition.LastTime) == diffLaps
-                        element.text "+#{diffLaps - 1} Laps"
+                        element.text "+#{diffLaps - 1}" + getLapString(diffLaps - 1)
                     else if diffLaps > 0
-                        element.text "+#{diffLaps} Laps"
+                        element.text "+#{diffLaps}" + getLapString(diffLaps)
                 else if diffLaps > 1
-                    element.text "+#{diffLaps} Laps"
+                    element.text "+#{diffLaps}" + getLapString(diffLaps)
                 else
                     element.text ''
             else
@@ -289,6 +289,14 @@ app.directive 'appGapTime', (iRData) ->
                     element.text '+' + utils.timeFormat gap, 3
                 else
                     element.text ''
+
+        getLapString = (position) ->
+            if position > 1
+                lapString = ' Laps'
+            else
+                lapString = ' Lap'
+
+            lapString
 
         scope.$watch 'ir.SessionInfo', updateStandingsGap
         scope.$watch 'ir.SessionNum', updateStandingsGap
