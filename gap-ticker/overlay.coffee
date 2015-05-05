@@ -18,13 +18,13 @@ app.service 'iRData', ($rootScope, config) ->
         'SessionInfo'
 
         # telemetry
-        'CamCarIdx'
+        #'CamCarIdx'
         #'CarIdxGear'
         #'CarIdxLap'
         #'CarIdxLapDistPct'
-        'CarIdxOnPitRoad'
+        #'CarIdxOnPitRoad'
         #'CarIdxRPM'
-        'CarIdxTrackSurface'
+        #'CarIdxTrackSurface'
         #'FuelLevel'
         #'Gear'
         #'IsOnTrack'
@@ -42,8 +42,8 @@ app.service 'iRData', ($rootScope, config) ->
         #'SessionFlags'
         'SessionNum'
         'SessionState'
-        'SessionTime'
-        'SessionTimeRemain'
+        #'SessionTime'
+        #'SessionTimeRemain'
         # 'Speed'
         #'WaterTemp'
     ]
@@ -229,22 +229,12 @@ app.directive 'appCarNumber', (iRData) ->
                 element.text ''
                 return
             driver = ir.DriversByCarIdx[carIdx]
-            carClassColor = driver.CarClassColor
-            if carClassColor == 0xffffff
-                carClassColor = 0xffda59
-            if carClassColor == 0
-                carClassId = driver.CarClassID
-                for d in ir.DriverInfo.Drivers
-                    if d.CarClassID == carClassId and d.CarClassColor
-                        carClassColor = d.CarClassColor
+            carClassColor = utils.getCarClassColor(driver.CarClassColor, ir.DriverInfo.Drivers)
 
             element.text "#{driver.CarNumber}"
             element.append '<span class="car-class" />'
             element.children().css
-                background: "rgba(#{carClassColor >> 16},\
-                    #{carClassColor >> 8 & 0xff},\
-                    #{carClassColor & 0xff},\
-                    1)"
+                background: 'linear-gradient(to bottom, ' + utils.shadeColor(carClassColor, 0.3) + ' 0%, ' + utils.shadeColor(carClassColor, -0.1) + ' 100%)'
 
         scope.$watch 'ir.DriverInfo', updateCarNumber
 
