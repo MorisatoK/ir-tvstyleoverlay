@@ -60,18 +60,14 @@ utils =
         B = f & 0x0000FF
         '#' + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1)
 
-    getContrastColor: (hexcolor) ->
-        if hexcolor.indexOf '#' > -1
-            hexcolor = hexcolor.slice(1)
-        r = parseInt(hexcolor.substr(0,2), 16)
-        g = parseInt(hexcolor.substr(2,2), 16)
-        b = parseInt(hexcolor.substr(4,2), 16)
-        yiq = ((r*299) + (g*587) + (b*114)) / 1000
-        color = ''
-        if (yiq >= 128)
-            color = 'black'
-        else
-            color = 'white'
-        color
+    getCarClassColor: (color, drivers) ->
+        if color == 0xffffff
+            color = 0xffda59
+        if color == 0
+            carClassId = driver.CarClassID
+            for d in drivers
+                if d.CarClassID == carClassId and d.CarClassColor
+                    color = d.CarClassColor
+        color = '#' + color.toString(16)
 
 window.utils = utils
