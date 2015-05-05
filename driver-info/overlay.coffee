@@ -108,7 +108,7 @@ app.service 'iRData', ($rootScope, config) ->
 
     return ir.data
 
-app.controller 'DriverCtrl', ($scope, $element, config, iRData) ->
+app.controller 'DriverInfoCtrl', ($scope, $element, config, iRData) ->
     ir = $scope.ir = iRData
 
     $scope.$watch 'ir.CamCarIdx', (n, o) ->
@@ -140,7 +140,7 @@ app.directive 'appClassPosition', (config, iRData) ->
                 return
 
             driver = ir.DriversByCarIdx[ir.CamCarIdx]
-            carClassColor = utils.getCarClassColor(driver.CarClassColor, ir.DriverInfo.Drivers)
+            carClassColor = utils.getCarClassColor(driver.CarClassColor, driver, ir.DriverInfo.Drivers)
 
             element.text ir.PositionsByCarIdx[ir.SessionNum][ir.CamCarIdx].ClassPosition + 1
             element.css
@@ -182,7 +182,7 @@ app.directive 'appCarNumber', (iRData) ->
                 element.text ''
                 return
             driver = ir.DriversByCarIdx[carIdx]
-            carClassColor = utils.getCarClassColor(driver.CarClassColor, ir.DriverInfo.Drivers)
+            carClassColor = utils.getCarClassColor(driver.CarClassColor, driver, ir.DriverInfo.Drivers)
 
             element.text "#{driver.CarNumber}"
             element.append '<span class="car-class" />'

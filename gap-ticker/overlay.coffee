@@ -229,7 +229,7 @@ app.directive 'appCarNumber', (iRData) ->
                 element.text ''
                 return
             driver = ir.DriversByCarIdx[carIdx]
-            carClassColor = utils.getCarClassColor(driver.CarClassColor, ir.DriverInfo.Drivers)
+            carClassColor = utils.getCarClassColor(driver.CarClassColor, driver, ir.DriverInfo.Drivers)
 
             element.text "#{driver.CarNumber}"
             element.append '<span class="car-class" />'

@@ -60,7 +60,7 @@ utils =
         B = f & 0x0000FF
         '#' + (0x1000000 + (Math.round((t - R) * p) + R) * 0x10000 + (Math.round((t - G) * p) + G) * 0x100 + (Math.round((t - B) * p) + B)).toString(16).slice(1)
 
-    getCarClassColor: (color, drivers) ->
+    getCarClassColor: (color, driver, drivers) ->
         if color == 0xffffff
             color = 0xffda59
         if color == 0
