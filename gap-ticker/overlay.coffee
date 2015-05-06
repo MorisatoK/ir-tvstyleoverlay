@@ -234,7 +234,7 @@ app.directive 'appCarNumber', (iRData) ->
             element.text "#{driver.CarNumber}"
             element.append '<span class="car-class" />'
             element.children().css
-                background: 'linear-gradient(to bottom, ' + utils.shadeColor(carClassColor, 0.3) + ' 0%, ' + utils.shadeColor(carClassColor, -0.1) + ' 100%)'
+                background: 'linear-gradient(to bottom, ' + carClassColor + ' 0%, ' + utils.shadeColor(carClassColor, -0.1) + ' 100%)'
 
         scope.$watch 'ir.DriverInfo', updateCarNumber
 

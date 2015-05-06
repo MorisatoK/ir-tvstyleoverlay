@@ -54,12 +54,18 @@ html, body {
 // VARIABLES
 
 @default-bg-color: #133144;
-@default-gradient-light: linear-gradient(to bottom, #162837 0%,#17394b 100%);
-@default-gradient-light-inverted: linear-gradient(to bottom, #123142 0%,#15243b 100%);
-@default-gradient-light-inverted-alt: linear-gradient(to bottom, #163a4a 0%,#162837 33%, #17394b 100%);
-@default-gradient-dark: linear-gradient(to bottom, #1d3440 0%,#0e1d27 100%);
-@default-gradient-dark-inverted: linear-gradient(to bottom, #111f2f 0%,#11202c 100%);
-@position-gradient: linear-gradient(to bottom, #ffffff 0%,#e1e1ff 100%);
+@gradient-lightblue-darkblue: linear-gradient(to bottom, #1b3643 0%,#172533 100%);
+@gradient-lightblue-darkblue-saturated: linear-gradient(to bottom, #14384b 0%,#081f38 100%);
+@gradient-darkblue-blue: linear-gradient(to bottom, #162732 0%,#193141 100%);
+@gradient-darkblue-blue-saturated: linear-gradient(to bottom, #122234 0%,#152d41 100%);
+@carnumber-gradient: linear-gradient(to bottom, #173f65 0%,#112737 50%,#0f1520 100%);
+@position-gradient: linear-gradient(to bottom, #ffffff 0%,#e8e8e8 20%,#e8e8e8 80%,#788493 100%);
+
+@curved-mask: url(../img/curved-mask.svg) no-repeat;
+@curved-mask-mirrored: url(../img/curved-mask-mirrored.svg) no-repeat;
+@curved-mask-inverted: url(../img/curved-mask-inverted.svg) no-repeat;
+@curved-mask-inverted-mirrored: url(../img/curved-mask-inverted-mirrored.svg) no-repeat;
+@car-class-mask: url(../img/car-class-mask.svg) no-repeat;
 
 // GLOBAL
 .irtvso {
@@ -86,7 +92,7 @@ html, body {
 		border-bottom-left-radius: 10px;
 		z-index: 5;
 		background: @position-gradient;
-		-webkit-mask: url(../img/position-number-mask.svg) top right no-repeat;
+		-webkit-mask: @curved-mask top right;
 		text-align: center;
 		text-indent: -10px;
 		font-style: italic;
@@ -100,8 +106,8 @@ html, body {
 		width: 130px;
 		height: 40px;
 		float: left;
-		background: @default-gradient-dark;
-		-webkit-mask: url(../img/car-number-mask.svg) top right no-repeat;
+		background: @carnumber-gradient;
+		-webkit-mask: @curved-mask-inverted top right;
 		z-index: 1;
 		text-align: center;
 		text-indent: 20px;
@@ -112,12 +118,10 @@ html, body {
 		color: #ffffff;
 
 		.car-class {
-			width: 38px;
-			height: 33px;
+			width: 42px;
+			height: 40px;
 			float: right;
-			-webkit-mask: url(../img/car-class-mask.svg) top right no-repeat;
-			margin-top: 3px;
-			margin-right: 8px;
+			-webkit-mask: @car-class-mask top right;
 		}
 	}
 
@@ -146,7 +150,7 @@ html, body {
 	.remaining {
 		border-top-left-radius: 10px;
 		border-bottom-right-radius: 10px;
-		background: @default-gradient-dark;
+		background: @gradient-lightblue-darkblue-saturated;
 		overflow: hidden;
 		padding-right: 20px;
 
@@ -156,8 +160,8 @@ html, body {
 			position: absolute;
 			top: 0;
 			right: 0;
-			background: @default-gradient-dark-inverted;
-			-webkit-mask-image: url(../img/session-info-mask.svg);
+			background: @gradient-darkblue-blue-saturated;
+			-webkit-mask: @curved-mask-inverted-mirrored top right;
 		}
 	}
 
@@ -194,7 +198,7 @@ html, body {
 	left: 0;
 	right: 0;
 	height: 95px;
-	background: @default-gradient-light;
+	background: @gradient-darkblue-blue;
 	overflow: hidden;
 	font-size: 1.2em;
 	text-transform: uppercase;
@@ -203,7 +207,7 @@ html, body {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 250px;
+		width: 220px;
 		height: 95px;
 		padding-top: 5px;
 		z-index: 10;
@@ -211,8 +215,9 @@ html, body {
 		font-weight: 500;
 		font-style: italic;
 		text-indent: 40px;
-		background: @default-gradient-light-inverted-alt;
-		-webkit-mask-image: url(../img/gap-ticker-title-mask.svg);
+		background: @gradient-lightblue-darkblue;
+		-webkit-mask: @curved-mask-inverted top right;
+		-webkit-mask-size: cover;
 	}
 
 	.item-wrapper {
@@ -284,11 +289,11 @@ html, body {
 	}
 
 	.top {
-		background: @default-gradient-light-inverted-alt;
+		background: @gradient-darkblue-blue;
 	}
 
 	.bottom {
-		background: @default-gradient-light-inverted;
+		background: @gradient-lightblue-darkblue;
 
 		.name {
 			margin-left: 140px;
@@ -310,7 +315,7 @@ html, body {
 		border-bottom-left-radius: 10px;
 		padding-left: 10px;
 		margin-right: -1px;
-		background: @default-gradient-light-inverted;
+		background: @gradient-lightblue-darkblue-saturated;
 
 		> * {
 			float: left;
